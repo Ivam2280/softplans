@@ -1,0 +1,9 @@
+.app-shell {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 268px minmax(0, 1fr);
+  background: var(--surface);
+  transition: grid-template-columns 0.32s var(--ease-spring);
+}

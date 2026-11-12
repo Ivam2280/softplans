@@ -1,0 +1,173 @@
+@media (min-width: 721px) {
+  .mobile-search-box {
+    display: none;
+  }
+
+  .desktop-search-box {
+    display: flex;
+    flex: 0 0 auto;
+    min-width: 0;
+    width: 176px;
+    max-width: 100%;
+    transition: width 0.36s var(--ease-spring);
+  }
+  .desktop-search-box:focus-within,
+  .desktop-search-box:has(.search-input:not(:placeholder-shown)) {
+    width: min(360px, 42vw);
+  }
+  .desktop-search-box .search-toggle {
+    left: 11px;
+    transition: color 0.22s var(--ease-smooth);
+  }
+  .desktop-search-box:focus-within .search-toggle,
+  .desktop-search-box:has(.search-input:not(:placeholder-shown)) .search-toggle {
+    color: var(--purple-dark);
+  }
+  .desktop-search-box .search-input {
+    min-width: 0;
+    padding-left: 36px;
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    transition:
+      border-color 0.26s var(--ease-smooth),
+      background-color 0.26s var(--ease-smooth),
+      box-shadow 0.26s var(--ease-smooth);
+  }
+  .desktop-search-box .search-input:hover:not(:focus):placeholder-shown {
+    background: #f5f3fb;
+  }
+  .desktop-search-box .search-input:hover:not(:focus):placeholder-shown::placeholder {
+    color: var(--purple-dark);
+  }
+  .desktop-search-box:hover:not(:focus-within):has(.search-input:placeholder-shown) .search-toggle {
+    color: var(--purple-dark);
+  }
+  .desktop-search-box .search-input:focus,
+  .desktop-search-box .search-input:not(:placeholder-shown) {
+    border-color: #e2dfe9;
+    background: var(--surface);
+    cursor: text;
+  }
+  .desktop-search-box .search-input:focus {
+    border-color: #968cd4;
+    box-shadow: 0 0 0 3px #8c82d422;
+  }
+  html[data-theme="dark"] .desktop-search-box .search-input {
+    border-color: transparent;
+    background: transparent;
+  }
+  html[data-theme="dark"] .desktop-search-box .search-input:hover:not(:focus):placeholder-shown {
+    background: #2b2936;
+  }
+  html[data-theme="dark"] .desktop-search-box .search-input:focus,
+  html[data-theme="dark"] .desktop-search-box .search-input:not(:placeholder-shown) {
+    border-color: #3e3b49;
+    background: #27252f;
+  }
+  html[data-theme="dark"] .desktop-search-box .search-input:focus {
+    border-color: #968cd4;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    min-height: 0;
+    padding-top: 0;
+  }
+  .groups-section {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .group-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .group-list.has-overflow-gutter {
+    width: calc(100% + var(--group-scrollbar-width));
+    margin-right: calc(var(--group-scrollbar-width) * -1);
+  }
+  .app-shell.is-sidebar-collapsed {
+    grid-template-columns: 76px minmax(0, 1fr);
+  }
+  .is-sidebar-collapsed .sidebar {
+    align-items: center;
+    padding: 0 14px 22px;
+  }
+  .is-sidebar-collapsed .sidebar-header {
+    justify-content: center;
+    width: calc(100% + 28px);
+    margin: 0 -14px 18px;
+    padding: 0;
+  }
+  .is-sidebar-collapsed .brand {
+    align-self: center;
+  }
+  .is-sidebar-collapsed .brand-text,
+  .is-sidebar-collapsed .filter-heading,
+  .is-sidebar-collapsed .filter-label,
+  .is-sidebar-collapsed .filter-count,
+  .is-sidebar-collapsed .groups-heading-row {
+    display: none;
+  }
+  .is-sidebar-collapsed .filter-section {
+    width: 100%;
+    margin-bottom: 0;
+  }
+  .is-sidebar-collapsed .filter-list {
+    justify-items: center;
+    gap: 6px;
+  }
+  .is-sidebar-collapsed .filter-button {
+    justify-content: center;
+    gap: 0;
+    width: 44px;
+    min-height: 44px;
+    padding: 0;
+    border-radius: 11px;
+  }
+  .is-sidebar-collapsed .nav-icon,
+  .is-sidebar-collapsed .nav-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  .is-sidebar-collapsed .groups-section {
+    width: 100%;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #eceaf0;
+  }
+  html[data-theme="dark"] .is-sidebar-collapsed .groups-section {
+    border-color: #36343f;
+  }
+  .is-sidebar-collapsed .group-list {
+    justify-items: center;
+    gap: 6px;
+  }
+  .is-sidebar-collapsed .group-item {
+    width: 44px;
+    justify-content: center;
+  }
+  .is-sidebar-collapsed .group-filter-button {
+    justify-content: center;
+    gap: 0;
+    min-height: 44px;
+    padding: 0;
+    border-radius: 11px;
+  }
+  .is-sidebar-collapsed .group-name,
+  .is-sidebar-collapsed .group-count {
+    display: none;
+  }
+  .is-sidebar-collapsed .group-dot {
+    width: 12px;
+    height: 12px;
+  }
+}

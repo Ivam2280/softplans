@@ -1,0 +1,122 @@
+[hidden] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 200;
+  top: -80px;
+  left: 16px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+.workspace-tools-button,
+.mobile-workspace-button {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 12px;
+  background: var(--surface);
+  color: var(--ink-secondary);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.workspace-tools-button:hover,
+.mobile-workspace-button:hover {
+  color: var(--purple-dark);
+  background: var(--purple-pale);
+}
+
+.mobile-workspace-button {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.workspace-description {
+  color: var(--ink-secondary);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.storage-notice {
+  margin: 0 0 20px;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--ink);
+  background: var(--purple-pale);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.storage-notice p {
+  margin: 0;
+}
+
+.storage-notice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.storage-notice-actions button {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.app-notice {
+  position: fixed;
+  z-index: 150;
+  right: 24px;
+  bottom: 24px;
+  max-width: min(440px, calc(100vw - 32px));
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 12px 40px #302b4026;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.dialog-status {
+  margin: 12px 0 0;
+  color: var(--ink-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+@media (max-width: 720px) {
+  .workspace-tools-button {
+    display: none;
+  }
+
+  .app-notice {
+    right: 16px;
+    bottom: calc(96px + env(safe-area-inset-bottom));
+  }
+
+  .storage-notice {
+    margin-top: 12px;
+  }
+}

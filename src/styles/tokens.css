@@ -1,0 +1,24 @@
+:root {
+  color-scheme: light;
+  --ink: #292a39;
+  --ink-secondary: #585766;
+  --ink-muted: #666575;
+  --purple: #6e64c2;
+  --accent-fill: #6e64c2;
+  --accent-fill-hover: #5449a8;
+  --purple-dark: #5449a8;
+  --purple-pale: #f0eefb;
+  --line: #e8e6ee;
+  --surface: #fff;
+  --canvas: #f8f7f5;
+  --kb-offset: 0px;
+  --vv-height: 100dvh;
+  --vv-offset-top: 0px;
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.165, 0.84, 0.44, 1);
+  font-family: "DM Sans", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
