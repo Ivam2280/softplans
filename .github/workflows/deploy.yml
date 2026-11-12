@@ -1,0 +1,75 @@
+name: Checks and GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Check, test and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npm run test:e2e
+      - name: Upload browser test results
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: browser-test-results
+          path: test-results/
+          retention-days: 7
+      - name: Upload production site
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    if: github.event_name != 'pull_request'
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Verify Pages source
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          node --input-type=module <<'NODE'
+          const response = await fetch(`https://api.github.com/repos/${process.env.REPOSITORY}/pages`, {
+            headers: { Authorization: `Bearer ${process.env.GH_TOKEN}`, Accept: 'application/vnd.github+json' },
+          });
+          if (!response.ok || (await response.json()).build_type !== 'workflow') {
+            console.error('::error::Select Settings > Pages > Build and deployment > Source > GitHub Actions, then rerun this workflow.');
+            process.exit(1);
+          }
+          NODE
+      - uses: actions/configure-pages@v6
+      - name: Deploy site
+        id: deployment
+        uses: actions/deploy-pages@v5
